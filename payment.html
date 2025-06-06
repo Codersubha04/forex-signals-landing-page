@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment Methods</title>
+    
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"> -->
+   <link rel="shortcut icon" href="./favicon-16x16.png" type="image/x-icon">
+
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+            scrollbar-width: thin;
+            scrollbar-color: #1ccbb1 #3b3b3b;
+        }
+
+        body {
+            /* font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+            background-color: #000000cf;
+            color: #fff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        html::-webkit-scrollbar-track,
+        body::-webkit-scrollbar-track {
+            background: #f3f3f3;
+        }
+
+        html::-webkit-scrollbar-thumb,
+        body::-webkit-scrollbar-thumb {
+            background-color: #1ccbb1;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        html::-webkit-scrollbar-thumb:hover,
+        body::-webkit-scrollbar-thumb:hover {
+            background-color: #18b1a0;
+        }
+
+        body {
+            background-color: #000000cf;
+            color: white;
+        }
+
+        .payment-hero {
+            background-image: url("./download (9).png");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+            width: 100vw;
+        }
+
+        .payment-hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .payment-container {
+            min-height: 100vh;
+            background-image: url("./Gradient.d6e4d8dcf61fb13c26fb.png");
+            background-size: cover;
+            background-position: center;
+            padding: 40px 70px;
+        }
+
+        .p-header {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 4rem;
+            letter-spacing: 1px;
+            text-align: center;
+            font-weight: normal;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .p-header span {
+            font-family: "Bebas Neue", sans-serif;
+            background: linear-gradient(to left, #00ff08 14%, #00ffff 62%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-button {
+            border: none;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #1ccbb1;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            border-radius: 15px
+        }
+
+        .price-button:before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            background-image: linear-gradient(120deg,
+                    rgba(255, 255, 255, 0) 30%,
+                    rgba(255, 255, 255, 0.8),
+                    rgba(255, 255, 255, 0) 70%);
+            top: 0;
+            left: -100px;
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100px;
+            }
+
+            20% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .price-button:hover {
+            background-color: #00e6a1;
+        }
+
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #1ccbb1;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+            animation: fadeInOut 2s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .p-header {
+                font-size: 3rem;
+                margin-top: 50px;
+            }
+
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center gap-10">
+
+    <!-- Payment Hero Background -->
+    <div class="payment-hero">
+        <div class="payment-container relative px-4 md:px-[70px] py-10 md:py-[40px]">
+
+            <!-- Logo -->
+            <div class="absolute top-6 left-1/2 transform -translate-x-1/2 sm:static sm:transform-none sm:ml-6">
+                <img src="logoImage.864ca09f6fb5cf04e50a-removebg-preview.png" alt="Logo" class="h-12 w-auto" />
+            </div>
+
+            <!-- Header -->
+            <div class="p-header pt-8">
+                SELECT ANY <span>PAYMENT OPTION</span>
+            </div>
+
+            <!-- Cards -->
+            <!-- Cards -->
+            <div class="flex flex-wrap justify-center items-stretch gap-10 md:gap-32 mt-10 md:mt-24">
+                <!-- Crypto Card -->
+                <div
+                    class="border border-dashed border-gray-600 rounded-2xl w-full md:w-80 bg-[#0a0f29] flex flex-col relative overflow-hidden h-full">
+                    <div class="absolute top-5 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-white text-[#1ccbb1] font-bold text-xs px-4 py-1 rounded-full">✅ Crypto</div>
+                    </div>
+
+                    <div class="p-6 pt-20 flex flex-col h-full">
+                        <h3 class="text-white text-xl font-semibold text-center mb-6">Crypto Payment</h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><span class="text-gray-400 block">Currency:</span> <span
+                                    class="text-white font-bold">USDT -
+                                    TRC20</span></li>
+                            <hr class="border-gray-700" />
+                            <li><span class="text-gray-400 block">Wallet Address:</span>
+                                <span id="cryptoAddress"
+                                    class="text-[#1ccbb1] break-words font-bold">TX1PqzrHLbkravmrwQyY9oRxU5Gk6GUEpP</span>
+                            </li>
+                        </ul>
+                        <div class="mt-4 pt-8">
+                            <button onclick="copyText('cryptoAddress')" class="price-button w-full">
+                                Copy Address
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Naira Card -->
+                <div
+                    class="border border-dashed border-gray-600 rounded-2xl w-full md:w-80 bg-[#0a0f29] flex flex-col relative overflow-hidden h-full">
+                    <div class="absolute top-5 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-white text-[#1ccbb1] font-bold text-xs px-4 py-1 rounded-full">✅ Naira</div>
+                    </div>
+
+                    <div class="p-6 pt-20 flex flex-col h-full">
+                        <h3 class="text-white text-xl font-semibold text-center mb-6">Naira Payment</h3>
+                        <ul class="space-y-4 text-sm text-gray-300">
+                            <li><span class="text-gray-400 block">Bank Name:</span> <span
+                                    class="text-white font-bold">WEMA
+                                    BANK</span></li>
+                            <hr class="border-gray-700" />
+                            <li><span class="text-gray-400 block">Account Name:</span> <span
+                                    class="text-white font-bold">OKAFOR
+                                    CHIDINMA PRECIOUS</span></li>
+                            <hr class="border-gray-700" />
+                            <li><span class="text-gray-400 block">Account Number:</span> <span id="nairaAccount"
+                                    class="text-white font-bold">0248174657</span></li>
+                        </ul>
+
+                        <div class="pt-0">
+                            <button onclick="copyText('nairaAccount')" class="price-button w-full md:mt-4">
+                                Copy Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guidelines Section -->
+            <div
+                class="mt-24 max-w-xl mx-auto bg-[#0a0f29] border border-dashed border-gray-600 rounded-2xl p-6 text-center">
+                <h4 class="text-[#1ccbb1] font-semibold text-lg mb-2">* Guidelines</h4>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    Kindly share your payment screenshot once your payment is done.
+                    We’ll process your order as soon as possible.
+                </p>
+            </div>
+
+            <!-- Toast -->
+            <div id="toast" class="toast">Copied to Clipboard!</div>
+
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
